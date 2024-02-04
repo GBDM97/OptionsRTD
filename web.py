@@ -11,7 +11,7 @@ def colorFn(v):
     
 mode = st.selectbox(
         "",
-        ("Lock","Dry", "Raw Data"),
+        ("Lock","Dry", "Market Data"),
 )
 
 with st.empty():
@@ -31,7 +31,7 @@ with st.empty():
         colorFn, subset=(slice(None),['Buy']))
         st.dataframe(df, hide_index=True, width=900, height=330)
         time.sleep(10)
-    while mode == "Raw Data":
+    while mode == "Market Data":
         data = requests.get("http://127.0.0.1:8000/options/").json()
         df = pd.DataFrame(data['excerpt']['optionsData'])
         st.dataframe(df, hide_index=True, width=900, height=330)
