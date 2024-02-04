@@ -18,7 +18,7 @@ with st.empty():
    
     while mode == 'Lock':
         data = requests.get("http://127.0.0.1:8000/options/").json()
-        df = pd.DataFrame(data['excerpt']['lockData'], columns=['Profit Price','Buy','Sell','Index'])
+        df = pd.DataFrame(data['excerpt']['lockData'], columns=['Profit Price','Buy','Buy Price','Sell','Sell Price','Index'])
         df = df.style.apply(colorFn, subset=(slice(None),['Buy','Sell'])
         ).applymap(lambda x: 'color: lime' if float(x) <= 0.25 else None, subset=(slice(None),['Index']))
         st.dataframe(df, hide_index=True, width=800, height=330)
